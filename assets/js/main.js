@@ -9,19 +9,32 @@
 
 // MAIL
 
-const mail = prompt("Per giocare a dadi, inserisci il tuo indirizzo email: ");
 let mails = ["1@gmail.com", "2@gmail.com", "3@gmail.com", "4@gmail.com"];
 let container = document.getElementById("contenitore");
-let testo = document.createElement("h1");
-container.append(testo);
+let testo = document.createElement("h3");
 
+function clickMail(){
+    let mail = document.getElementById('posta').value;
+    container.append(testo);
+    testo.classList.add("mt-1");
+    let x = false;
 
-if (mails.includes(mail)) {
-    testo.textContent = "Email inserito correttamente! :)";
-} else {
-    testo.textContent = "Email inserito non correttamente, ma puoi giocare da non registrato";
+    for(let i = 0; i < mails.length; i++){
+        if (mails[i] == mail){
+            x = true; 
+        }
+    }
+
+    if ( x ){
+        testo.textContent = 'Mail già presente, puoi iniziare a giocare';
+        console.log(mails);
+    } else {
+        mails.push(mail);
+        testo.textContent = 'Email registrata correttamente, puoi iniziare a giocare';
+        console.log(mails);
+    }
+
 }
-
 
 // DADI
 
@@ -31,21 +44,18 @@ function dado(){
     console.log(dado);
     console.log(dadoPC);
     let box = document.querySelector("#risultato");
-    let score = document.createElement("h2");
-    box.append(score);
     
-
     if (dado > dadoPC) {
         console.log("hai vinto");
-        score.textContent = "Hai vinto";
+        box.textContent = `Hai vinto. ${dado} vs ${dadoPC}`;
         
     } else if (dado < dadoPC) {
         console.log("hai perso");
-        score.textContent = "Hai perso";
+        box.textContent = `Hai perso. ${dado} vs ${dadoPC}`;
         
     } else {
         console.log("hai pareggiato");
-        score.textContent = "Hai pareggiato";
+        box.textContent = `Hai pareggiato. ${dado} vs ${dadoPC}`;
         
     }
     
