@@ -9,14 +9,44 @@
 
 // MAIL
 
-const mail = prompt("Inserisci il tuo indirizzo email: ");
+const mail = prompt("Per giocare a dadi, inserisci il tuo indirizzo email: ");
+let mails = ["1@gmail.com", "2@gmail.com", "3@gmail.com", "4@gmail.com"];
+let container = document.getElementById("contenitore");
+let testo = document.createElement("h1");
+container.append(testo);
 
-let mails = ["1@gmail.com, 2@gmail.com, 3@gmail.com, 4@gmail.com"];
-
-console.log(mails);
 
 if (mails.includes(mail)) {
-    console.log("Email inserito correttamente.");
+    testo.textContent = "Email inserito correttamente! :)";
 } else {
-    console.log("Email inserito non correttamente.");
+    testo.textContent = "Email inserito non correttamente, ma puoi giocare da non registrato";
+}
+
+
+// DADI
+
+function dado(){
+    let dado = Math.floor(Math.random() * 6) + 1;
+    let dadoPC = Math.floor(Math.random() * 6) + 1;
+    console.log(dado);
+    console.log(dadoPC);
+    let box = document.querySelector("#risultato");
+    let score = document.createElement("h2");
+    box.append(score);
+    
+
+    if (dado > dadoPC) {
+        console.log("hai vinto");
+        score.textContent = "Hai vinto";
+        
+    } else if (dado < dadoPC) {
+        console.log("hai perso");
+        score.textContent = "Hai perso";
+        
+    } else {
+        console.log("hai pareggiato");
+        score.textContent = "Hai pareggiato";
+        
+    }
+    
 }
